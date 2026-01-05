@@ -1,0 +1,6 @@
+printMenu() -> Main
+add(Todo todo) -> TodoService
+getTitle() -> Todo
+getAll() -> Todo X TodoService 
+readInput() -> Main
+setDone(boolean done) -> Todo

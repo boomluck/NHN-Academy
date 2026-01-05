@@ -1,0 +1,315 @@
+Day 1, 연습 문제
+
+1. 다음 변수들의 사용 가능 여부를 판단하시오.
+int 1stNumber = 10;      // (a) : X 변수의 첫 번째 글자는 숫자일 수 없음
+String user-name = "Kim"; // (b) : X 변수에 사용할 수 없는 문자(-)
+double _price = 99.9;    // (c) : O
+boolean isValid = true;  // (d) : O
+int class = 5;           // (e) : O, class는 예약 변수이므로 변수 이름으로 사용할 수 없음. 따라서 정답은 X
+String $message = "Hi";  // (f) : O
+
+
+
+
+2. 출력 결과를 입력하시오.
+int x = 5;
+int y = x;
+x = 10;
+System.out.println("x = " + x + ", y = " + y);
+//출력 결과 : x = 10, y = 5
+
+
+
+
+3. 변수명을 'camelcase'에 맞게 수정하시오.
+total_count // total_count, totalCount로 작성하는 것이 관례적으로 옳음. camelCase는 자바 언어에서 관례적으로 사용하는 문법 규칙임. _를 사용하는 규칙은 snake_case라고 불리며 이는 C언어나 python 등에서 주로 사용된다고 함.
+USERNAME // userName
+IsCompleted // IsCompleted
+
+
+
+
+4. 출력 결과를 입력하시오.
+int a = 10;
+int b = a;
+a = 20;
+System.out.println("a = " + a + ", b = " + b);
+// 출력 결과 : a = 20, b = 10
+
+int[] arr1 = {1, 2, 3};
+int[] arr2 = arr1;
+arr1[0] = 100;
+System.out.println("arr1[0] = " + arr1[0] + ", arr2[0] = " + arr2[0]);
+// 출력 결과 : arr1[0] = 100, arr2[0] = 1
+// 실제 출력 결과에서 arr2[0] = 100으로 출력됨. 이유 : 배열은 reference type이기 때문임. 
+// primitive type의 변수는 '값을 그대로 복사'하는 반면 reference type의 변수는 '값을 참조'하는 것이기 때문. 
+// Java에서 배열은 항상 reference type임.
+
+
+
+
+5. 다음 중 reference type을 모두 고르시오.
+(a) int
+(b) String
+(c) double
+(d) Integer
+(e) boolean
+(f) int[]
+(g) char
+// f
+// b, d, f가 reference type임. f에는 []중괄호가 해당 변수가 배열임을 바로 보여줌.
+// b와 d는 모두 Java 시스템 안에 기본 정의된 class임.
+// 모든 class는 값을 참조하는 방식이기 때문에 reference type임.
+
+
+
+
+6. 다음 코드의 출력 결과를 예상하시오.
+String s1 = "Hello";
+String s2 = "Hello";
+String s3 = new String("Hello");
+
+System.out.println(s1 == s2);
+System.out.println(s1 == s3);
+System.out.println(s1.equals(s3));
+// true
+// true
+// true
+// 정답 : true false true
+// 자바는 JVM이라는 가상의 시스템 공간을 만들게 되는데, 그 시스템 안에 JVM만을 위해 할당된 메모리 영역이 있음. (하드웨어 메모리 아님)
+// JVM 메모리는 Stack, Heap, Method Area 등으로 나뉘어 사용되는데, Stack에는 변수 자체(예문의 s1, s2 등)를 저장함.
+// Heap에는 변수의 값(예문의 'Hello')이 저장됨. (Heap의 String Pool에 저장됨)
+// Heap에 저장된 s1의 Hello와 s2의 Hello는 값도 같고 주소도 같음. (이는 String Pool의 저장 방식임)
+// s3에서 new라는 명령어를 통해 '새롭게 생성된' Hello는 기존의 s1,s2의 Hello와는 다른 객체임. (추가적인 설명, s1,s2,s3의 Hello는 모두 '객체'임.)
+// == 연산자는 '참조값'이 같은지를 확인하는 것. s1과 s2는 같은 참조값(주소가 같음)이기에 true. (참고, Java에서 변수에 값을 저장하는 것은 primitive type뿐임)
+// s1과 s3는 사람이 보기에는 같은 값이지만 new라는 명령어를 통해 만들어진 새로운 객체이므로 참조값이 같다고 볼 수는 없음. 따라서, false.
+// s1과 s3가 equals()한가는 '값만' 확인하기 때문에 true가 나옴.
+
+
+
+
+
+// 여기까지가 주어진 시간(두 시간?) 내에 풀 수 있는 영역이었음
+// 아래부터는 해설을 포함한 시연을 직접 보여주심
+
+
+
+
+
+7. primitive type과 wrapper class의 차이를 설명하고 빈칸을 채우시오.
+타입	primitive	Wrapper	    primitive 기본값	Wrapper 기본값
+정수	int	        Integer	    ?                   ?
+실수	double	    Double	    ?   	            ?
+논리	boolean	    Boolean	    ?	                ?
+
+// 0 null 0.0 null false null
+
+
+
+
+8. 다음 코드의 출력 결과를 입력하시오.
+Integer a = 100;
+Integer b = 100;
+Integer c = 200;
+Integer d = 200;
+
+System.out.println(a == b);
+System.out.println(c == d);
+
+// true true
+// 정답 : true false
+// Integer는 Wrapper class이며, 해당 class는 -127~127 사이의 값을 하나의 캐싱(cashe-ing)으로 함.
+// 범위를 벗어나는 값은 새로운 캐싱으로 묶임.
+// 참조값을 비교하는 연산자인 ==로 비교하면 128을 초과하는 구간은 새로운 캐싱 영역이기 때문에 false로 나옴.
+// (참고, Wrapper class를 통해 저장된 변수값은 모두 객체이다. 객체/참조 구분은 Java에서 중요한 개념)
+
+
+
+
+9. 다음 예문의 결과를 예측하고 해결 방법을 제시하시오.
+Integer value = null;
+int result = value + 10;
+
+// value에 값이 없기 때문에 (null은 0이 아님) 오류가 발생하며 실행되지 않을 것. value에 값을 지정한다 (예, 0)
+// 정답 : int result = (value != null) ? value + 10 (null 확인 연산자를 추가한다는 설명)
+
+
+
+
+10. 다음 빈칸을 채우시오.
+// 필요한 import문 3개:
+// 1. _______
+// 2. _______
+// 3. _______
+
+public class Main {
+    public static void main(String[] args) _______ {  // 예외 처리
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("이름: ");
+        // ...
+    }
+}
+
+// 1. import Java.io.BufferedReader
+// 2. import Java.io.InputStreamReader까지는 챗지피티의 도움으로 알아냄.
+// 예문 전체를 채워달라고 요청하니 3번 항목에는 import java.io.IOException을 넣게 된다고 함.
+// 빈칸에는 throws IOException을 채우면 된다고 함.
+// 이건 통으로 기억하는 편이 좋을 듯.
+// Java에서는 입력 과정이 있는데 오류에 대한 예외 처리를 어떻게 할지에 대한 내용이 없으면 컴파일링 자체가 안 된다고 함. -> 실행조차 안 됨.
+
+
+
+
+11. 아래 코드가 작동되도록 빈칸을 채우시오.
+BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+System.out.print("이름: ");
+String name = _______;
+System.out.println("입력한 이름: " + name);
+
+// 예외 처리? throws나 try-catch 써야 컴파일링 된다?
+// 아니면, reader를 입력한다?
+// 정답 : String name = reader.readLine();
+// reader에 아무 내용이 없으니 입력을 받는 readLine()을 붙여준 듯.
+// 실행해 본 결과, readLine() 없으면 컴파일링조차 안 됨. 당연히, 예외처리가 빠져서.
+// readLine()을 입력하면 정상 작동함. 궁금한 건, readLine()에는 예외가 발생할 경우의 수가 전혀 없나?
+// 아, 내가 붙여넣기한 구문에 이미 throws IOException이 있었음. 10번 예문에도 붙여넣기했으니...
+// BufferedReader가 입력을 담당하는 클래스(메서드?)이고 reader라는 하위 객체를 만든 것.
+// 객체를 다룰 때 '.'을 입력하여 '해당 객체의 ~'처럼 운용함.
+
+
+
+
+
+12. 다음 예문에서 입력된 값을 정수로 변환하여 처리하는 코드를 완성하시오.
+BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+System.out.print("나이: ");
+String ageStr = reader.readLine();
+int age = _______;
+System.out.println("입력한 나이: " + age);
+
+// age = Integer(ageStr)?
+// 정답 : age = Integer.parseInt(ageStr)
+// Integer는 클래스이며 단독으로 호출할 수 있는 것이 아님.
+// Integer 하위에 있는 함수(자바에서는 메서드라고 함)들을 호출해서 사용하는 것임.
+// Integer 하위 메서드에는 parseInt() toString() compare(int, int) 등이 있음.
+// parse(문장을 분석한다는 뜻). parseInt()는 값을 분석해서 int값으로 변환해 주는 메서드.
+
+
+
+
+13. 1부터 10까지 출력하는 while문을 완성하시오.
+int i = 1;
+while (_______) {
+    System.out.println(i);
+    _______;
+}
+
+// true i++
+// 정답 i <= 10 i++; (세미콜론 중요)
+
+
+
+
+14. 다음 코드의 출력 결과를 작성하시오.
+int n = 5;
+int sum = 0;
+while (n > 0) {
+    sum += n;
+    n--;
+}
+System.out.println("합계: " + sum);
+
+// 15
+
+
+
+
+15. 무한 루프를 이용하여 quit를 입력할 때까지 입력받은 문자열을 출력하는 코드를 작성하시오.
+/*import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) throws IOException {  // 예외 처리
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String randomStr = " ";
+
+        while (!randomStr.equals("quit")) {
+            randomStr = reader.readLine();
+            System.out.println("입력한 문자열 : " + randomStr);
+        }
+    }
+}*/
+
+
+
+
+문제 16: 다음 요구사항을 만족하는 프로그램을 작성하시오.
+
+사용자에게 "숫자를 입력하세요 (종료: quit): " 메시지를 출력
+입력받은 값이 "quit"이면 지금까지 입력한 숫자들의 합을 출력하고 종료
+숫자가 입력되면 누적 합계를 출력
+실행 예시:
+
+숫자를 입력하세요 (종료: quit): 10
+현재 합계: 10
+숫자를 입력하세요 (종료: quit): 20
+현재 합계: 30
+숫자를 입력하세요 (종료: quit): 5
+현재 합계: 35
+숫자를 입력하세요 (종료: quit): quit
+최종 합계: 35
+프로그램을 종료합니다.
+
+// 코드에 if문을 사용해야 하는데 2일차 교육 내용에는 if가 없었음.
+
+/*BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String randomStr = " ";
+        int randomNum = 0;
+
+        while (!randomStr.equals("quit")) {
+        System.out.print("숫자를 입력하세요 (종료 : quit) : ");
+
+            randomStr = reader.readLine();
+            randomNum += Integer.parseInt(randomStr);
+            System.out.println("현재 합계 : " + randomNum);
+        }
+
+        System.out.println("최종 합계 : " + randomNum);
+*/
+
+// 위와 같이 시도함.
+// while 구문을 quit를 이용해 종료하면 즉시 크래시됨. "최종 합계" 라인을 도달할 수 없음.
+// 원인은 quit 입력 시에도 parseInt()가 숫자로 변환시켜 버리기 때문에 크래시가 발생한다고 함.
+
+// 정답을 확인해 보면 if 구문이 사용됨.
+
+// 챗지피티에게 요청해 보니 while만으로도 가능하긴 함.
+
+/* 챗지피티 버전
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int sum = 0;
+
+        System.out.print("숫자를 입력하세요 (종료: quit): ");
+        String input = reader.readLine();
+
+        while (!"quit".equals(input)) {
+            int num = Integer.parseInt(input);
+            sum += num;
+            System.out.println("현재 합계: " + sum);
+
+            System.out.print("숫자를 입력하세요 (종료: quit): ");
+            input = reader.readLine();
+        }
+
+        System.out.println("최종 합계: " + sum);
+        System.out.println("프로그램을 종료합니다.");
+    }
+}
+*/

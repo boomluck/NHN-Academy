@@ -1,0 +1,647 @@
+byte<short(char)<int<long<double<float
+
+비교 연산자 ==, !=, >, <, >=, <=는 모두 primitive type에 적용되지만
+==, !=는 reference type에는 적용되지 않음. equals()를 사용하도록.
+
+제어와 흐름 if, else, case, switch, break, continue, return 등.
+
+
+
+
+
+문제 1: 다음 코드의 출력 결과를 작성하시오.
+
+int a = 17;
+int b = 5;
+System.out.println(a / b);
+System.out.println(a % b);
+
+// 3
+// 4
+
+// 정답 : 3 2
+// % 연산자는 몇이 남는지를 알려줌. 정수 이하(소수점) 값을 알려주는 것 아님.
+
+
+
+
+문제 2: 다음 코드의 최종 count 값을 작성하시오.
+
+int count = 10;
+count += 5;
+count -= 3;
+count *= 2;
+
+// 24
+
+
+
+
+
+문제 3: 다음 코드의 출력 결과를 작성하시오.
+
+int i = 5;
+System.out.println(i++);
+System.out.println(i);
+System.out.println(++i);
+
+// 5
+// 6
+// 6
+
+// 정답 : 5 6 7
+// i++는 출력이 된 후 연산이 되는 거고 ++i는 연산 먼저되고 출력이 됨.
+
+
+
+
+문제 4: 다음 코드의 출력 결과를 작성하시오.
+
+int a = 7;
+int b = 2;
+System.out.println(a / b);
+System.out.println(a / 2.0);
+System.out.println((double) a / b);
+
+// 3
+// 3.5 (더 큰 수 타입으로 자동 바뀌니까?)
+// 3.0 (double로 수 타입을 확장시키더라도 a/b연산은 int 타입에서 이루어지므로 소수점 이하는 버리게 됨)
+
+// 정답 : 3 3.5 3.5
+/* 설명 : 
+명시적 형변환 (캐스팅):
+
+int a = 5;
+int b = 3;
+
+// 정수 나눗셈 → 소수점 버림
+int result1 = a / b;           // 1
+
+// 형변환으로 실수 나눗셈
+double result2 = (double) a / b;  // 1.666...
+double result3 = a / (double) b;  // 1.666...
+double result4 = (double) (a / b); // 1.0 (이미 1로 계산된 후 변환)
+*/
+
+
+
+
+문제 5: 다음 코드의 출력 결과를 작성하시오.
+
+System.out.println(1 + 2 + "3");
+System.out.println("1" + 2 + 3);
+System.out.println("1" + (2 + 3));
+
+// 33
+// 15
+// 15
+
+// 정답 : 33 123 15
+/* 설명 :
++ 연산자는 두 가지 기능이 있음. 하나는 사칙연산의 '합' 연산 기능. 다른 하나는 문자 '결합' 기능.
+두 가지 기능 중 어느 기능을 사용할 것이냐를 판단하는 내부 규칙이 있음.
+먼저 온 값이 문자이면 다음 것도 문자로 판단하여 '문자열 결합'일라는 결과가 나옴.
+단, ()를 이용하면 괄호 안에 있는 것은 사칙연산의 '합'으로 봄.
+*/
+
+
+
+
+문제 6: 다음 코드의 출력 결과를 작성하시오.
+
+System.out.println(2 + 3 * 4);
+System.out.println((2 + 3) * 4);
+System.out.println(10 - 6 / 2);
+System.out.println(10 % 3 + 2);
+
+// 14 20 7 3
+
+
+
+
+
+문제 7: 다음 논리 연산의 결과를 작성하시오.
+
+System.out.println(true || false && false);
+System.out.println((true || false) && false);
+
+// false false 
+// 정답 : true false
+/* 설명 :
+논리 연산자에도 우선 순위가 있음.
+&&가 ||보다 우선함.
+*/
+
+
+
+
+문제 8: 다음 비교 연산의 결과를 작성하시오.
+
+int x = 10;
+System.out.println(x > 5);
+System.out.println(x == 10);
+System.out.println(x != 10);
+System.out.println(x >= 15);
+
+// true true false false
+
+
+
+
+문제 9: 다음 논리 연산의 결과를 작성하시오.
+
+boolean a = true;
+boolean b = false;
+System.out.println(a && b);
+System.out.println(a || b);
+System.out.println(!a);
+System.out.println(!b);
+
+// false true false true
+
+
+
+
+문제 10: 다음 코드의 출력 결과를 작성하시오.
+
+int age = 25;
+int score = 70;
+System.out.println(age >= 20 && score >= 80);
+System.out.println(age >= 20 || score >= 80);
+System.out.println(!(age < 20));
+
+// false true true
+
+
+
+
+문제 11: 다음 코드의 출력 결과를 작성하시오.
+
+int score = 85;
+if (score >= 90) {
+    System.out.println("A");
+}
+if (score >= 80) {
+    System.out.println("B");
+}
+if (score >= 70) {
+    System.out.println("C");
+}
+
+// B C
+
+
+
+
+문제 12: 변수 age가 18 이상이면 "성인", 아니면 "미성년자"를 출력하는 코드를 작성하시오.
+
+int age = 20;
+
+//  if (age >= 18) {
+    System.out.println("성인");
+    }
+    else {
+        System.out.println("미성년자");
+    }
+
+
+
+
+문제 13: 다음 코드의 출력 결과를 작성하시오.
+
+int x = 10;
+int y = 5;
+if (x > 5 && y > 3) {
+    System.out.println("조건1 만족");
+}
+if (x > 15 || y > 3) {
+    System.out.println("조건2 만족");
+}
+if (!(x < 5)) {
+    System.out.println("조건3 만족");
+}
+
+// 조건1 만족 조건2 만족 조건3 만족
+
+
+
+
+문제 14: 다음 코드의 출력 결과를 작성하시오.
+
+int score = 85;
+if (score >= 90) {
+    System.out.println("A");
+} else if (score >= 80) {
+    System.out.println("B");
+} else if (score >= 70) {
+    System.out.println("C");
+} else {
+    System.out.println("F");
+}
+
+// B
+
+
+
+
+문제 15: 점수에 따른 학점을 출력하는 코드를 완성하시오.
+
+int score = 75;
+String grade;
+
+// 여기에 코드 작성
+// 90 이상: A, 80 이상: B, 70 이상: C, 60 이상: D, 그 외: F
+
+if (score >= 90) {
+    grade = "A";
+}
+else if (score >= 80) {
+    grade = "B";
+}
+else if (score >= 70) {
+    grade = "C";
+}
+else if (score >= 60) {
+    grade = "D";
+}
+else {
+    grade = "F";
+}
+System.out.println("학점: " + grade);
+
+// 결과 : C
+
+
+
+
+문제 16: 세 수 중 가장 큰 수를 출력하는 코드를 작성하시오.
+
+int a = 15, b = 27, c = 12;
+int max;
+// 여기에 코드 작성 (if-else if-else 사용)
+if (a>b) {
+    max = a;
+}
+else if (b>c) {
+    max = b;
+}
+else {
+    max = c;
+}
+System.out.println("가장 큰 수: " + max);
+
+// 결과 : 27
+
+// 정답 :
+/*
+int a = 15, b = 27, c = 12;
+int max;
+
+if (a >= b && a >= c) {
+    max = a;
+} else if (b >= a && b >= c) {
+    max = b;
+} else {
+    max = c;
+}
+
+System.out.println("가장 큰 수: " + max);
+*/
+// 설명 :
+같음 비교 연산자를 넣지 않으면 '논리적 완결성'을 보장할 수 없음.
+예, a=20, b=10, c=30
+첫 번째 if 구문이 참이 되므로 가장 큰 수를 a=20인 것으로 됨.
+
+// 추가 설명 : 변수 선언할 때, type 하나에 변수 하나를 권장
+int a=0, b=0, c=0; (x)
+int a=0;
+int b=0;
+int c=0; (o)
+
+
+
+
+문제 17: 다음 코드의 출력 결과를 작성하시오.
+
+int num = 2;
+switch (num) {
+    case 1:
+        System.out.println("One");
+        break;
+    case 2:
+        System.out.println("Two");
+        break;
+    case 3:
+        System.out.println("Three");
+        break;
+    default:
+        System.out.println("Other");
+}
+
+// Two (2라고 썼네...)
+
+
+
+
+문제 18: 다음 코드의 출력 결과를 작성하시오. (break 누락 주의!)
+
+int num = 2;
+switch (num) {
+    case 1:
+        System.out.println("One");
+    case 2:
+        System.out.println("Two");
+    case 3:
+        System.out.println("Three");
+        break;
+    default:
+        System.out.println("Other");
+}
+
+// TwoThree
+
+// 정답 : Two (줄 바꿈) Three
+// 출력 메시지에 빈 칸 없어도 case 시스템 규칙 상 자동 줄 바꿈.
+
+
+
+
+문제 19: switch-case로 요일에 따른 메시지(평일, 주말)를 출력하시오.
+
+int day = 3; // 1:월, 2:화, 3:수, 4:목, 5:금, 6:토, 7:일
+switch (day) {
+    case 1: case 2: case 3: case 4: case 5:
+        System.out.println("평일");
+        break;
+    case 6: case 7:
+        System.out.println("주말");
+        break;
+    default:
+        System.out.println("잘못된 입력");
+}
+
+// 결과 : 평일
+
+// 정답 : "평일입니다" "주말입니다"
+
+
+
+
+문제 20: switch-case로 계산기를 구현하시오.
+
+int a = 10, b = 3;
+String op = "/";
+int result = 0;
+
+switch (op) {
+    // 여기에 코드 작성
+    // "+": 덧셈, "-": 뺄셈, "*": 곱셈, "/": 나눗셈
+    case "+":
+        result = a + b;
+    case "-":
+        result = a - b;
+    case "*":
+        result = a * b;
+    case "/":
+        result = a / b;
+    default:
+        System.out.println("사칙연산 기호가 아닙니다.")
+}
+
+System.out.println(a + " " + op + " " + b + " = " + result);
+
+/*
+        int a = 10, b = 3;
+        String op = "=";
+        int result = 0;
+
+        switch (op) {
+            // 여기에 코드 작성
+            // "+": 덧셈, "-": 뺄셈, "*": 곱셈, "/": 나눗셈
+            case "+":
+                result = a + b;
+                System.out.println(a + " " + op + " " + b + " = " + result);
+                break;
+            case "-":
+                result = a - b;
+                System.out.println(a + " " + op + " " + b + " = " + result);
+                break;
+            case "*":
+                result = a * b;
+                System.out.println(a + " " + op + " " + b + " = " + result);
+                break;
+            case "/":
+                result = a / b;
+                System.out.println(a + " " + op + " " + b + " = " + result);
+                break;
+            default:
+                System.out.println("사칙연산 기호가 아닙니다.");
+        }
+*/
+
+
+
+
+문제 21: 다음 switch 문을 switch expression으로 변환하시오.
+
+int day = 3;
+String type;
+switch (day) {
+    case 1: case 2: case 3: case 4: case 5:
+        type = "평일";
+        break;
+    case 6: case 7:
+        type = "주말";
+        break;
+    default:
+        type = "잘못된 입력";
+}
+System.out.println(type);
+
+/*
+        int day = 8;
+        String type;
+        switch (day) {
+            case 1, 2, 3, 4, 5 -> type = "평일";
+            case 6, 7 -> type = "주말";
+            default -> type = "잘못된 입력";
+        };
+        System.out.println(type);
+*/
+
+/* 정답 :
+int day = 3;
+String type = switch (day) {        // <<<<<<<< 잘 보셈. 중요!
+    case 1, 2, 3, 4, 5 -> "평일";
+    case 6, 7 -> "주말";
+    default -> "잘못된 입력";
+};
+System.out.println(type);
+*/
+
+
+
+문제 22: 다음 코드의 출력 결과를 작성하시오.
+
+int month = 2;
+int days = switch (month) {
+    case 1, 3, 5, 7, 8, 10, 12 -> 31;
+    case 4, 6, 9, 11 -> 30;
+    case 2 -> 28;
+    default -> -1;
+};
+System.out.println(month + "월은 " + days + "일");
+
+// 2월은 28일
+
+
+
+
+문제 23: switch expression과 yield를 사용하여 점수에 따른 학점을 반환하는 코드를 완성하시오.
+
+        int score = 85;
+        String grade = switch (score) {
+            // 여기에 코드 작성
+            // 90점 이상은 A
+            // 80점 이상은 B
+            // 70점 이상은 C
+            // 나머지는 "재시험 대상입니다." 출력 후 "F" 반환
+            case 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100 -> "A";
+            case 80, 81, 82, 83, 84, 85, 86, 87, 88, 89 -> "B";
+            case 70, 71, 72, 73, 74, 75, 76, 77, 78, 79 -> "C";
+            default -> {
+                System.out.println("재시험 대상입니다.");
+                yield "F";
+            }
+        };
+        System.out.println("학점: " + grade);
+
+/* 정답 : 
+int score = 85;
+String grade = switch (score / 10) {
+    case 10, 9 -> "A";
+    case 8 -> "B";
+    case 7 -> "C";
+    default -> {
+        System.out.println("재시험 대상입니다.");
+        yield "F";
+    }
+};
+System.out.println("학점: " + grade);
+
+설명 : (score / 10) 부분에서 90점대, 80점대, 70점대 등의 점수대를 분류할 수 있음.
+100점은 예외적으로 10을 분류해 줌.
+
+yield는 값을 반환하는 명령어인데, 
+return 반환 후 해당 함수(메서드)를 종료하는 반면 
+yield는 해당 메서드를 종료하지 않고 switch 구문만 종료함.
+
+
+
+
+문제 24: 다음 출력 결과가 나오도록 while문 내부를 완성하시오.
+출력 결과:
+
+1
+2
+종료
+
+        int i = 0;
+        while (i < 5) {
+            // 여기에 코드 작성
+            switch (i) {
+                case 0 -> System.out.println("");
+                case 1, 2 -> System.out.println(i);
+            }
+            i++;
+        }
+        System.out.println("종료");
+
+/* 정답 
+int i = 0;
+while (i < 5) {
+    i++;
+    if (i == 3) {
+        break;
+    }
+    System.out.println(i);
+}
+System.out.println("종료");
+
+설명 : 분기문 3종을 이용하여 구문을 완성할 것. (카테고리 안 봤음..)
+*/
+
+
+
+
+문제 25: 다음 출력 결과가 나오도록 while문 내부를 완성하시오.
+출력 결과:
+
+1
+2
+4
+5
+종료
+
+        int i = 0;
+        while (i < 5) {
+            // 여기에 코드 작성
+            if (i == 0) {System.out.println("");}
+            else if (i >= 3) {System.out.println(i+1);}
+            else {System.out.println(i);}
+            i++;
+        }
+        System.out.println("종료");
+
+/* 정답 :
+int i = 0;
+while (i < 5) {
+    i++;
+    if (i == 3) {
+        continue;
+    }
+    System.out.println(i);
+}
+System.out.println("종료");
+
+설명 : 문제 텍스트를 복사하기, 붙여넣기하니 공백줄이 생겨서 그렇지 사실 문제에서는 i==0 단계에서 공백줄을 넣으라는 요구는 없음.
+괜히 저 공백줄 만들어 넣겠다고 시간낭비..는 그런 요구도 쉽고 빠르게 해낼 수 있어야 하는 것도 실력이지. 잘해라.
+
+
+
+
+문제 26: 1부터 10까지 중 3의 배수를 건너뛰고 출력하는 코드를 작성하시오.
+
+        int i = 0;
+        while (i < 10) {
+            i++;
+            // 여기에 코드 작성 (continue 사용)
+            
+            if ((i % 3) != 0) {System.out.println(i);}
+            // else continue; 이 줄은 굳이 없어도 출력 결과는 같지만 문제에서 요구하니까 오류 발생이 없는 수준에서 그냥 넣음.
+
+/* 정답 :
+int i = 0;
+while (i < 10) {
+    i++;
+    if (i % 3 == 0) {
+        continue;
+    }
+    System.out.println(i);
+}*/
+
+
+
+
+프로젝트 : TODO 앱
+
+1. try-catch 구문을 이용한다면
+try {
+    // 실행할 내용
+} catch (IOException e) {
+    e.printStackTrace();
+}
+
+2. System.in을 사용한 후에는 해제해 주어야 함. (나중에 소켓을 배울 때 알게 된다고 함)
+
+3. 어떤 명령어와 구문을 사용할 것인지는 주관적 판단. 정답 없음.

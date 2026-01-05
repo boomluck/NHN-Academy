@@ -1,0 +1,5 @@
+(A) private -> public
+(B) ?
+
+(A) 파트는 앱 로직 관련 내용이라 TodoService 클래스에
+(B) 파트는 앱 UI 관련 내용이라 Main 클래스에

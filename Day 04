@@ -1,0 +1,173 @@
+1. A
+
+2. 클래스 = Todo, 오브젝트 = todo1, todo2
+
+3. 클래스, 오브젝트, 클래스, 오브젝트
+
+4. D? 정답 : B
+
+5. 시각적으로 간결함, 다루기 쉬움(3개의 변수가 있지만 그 중 하나만을 다룰 때에 클래스로 묶지 않았다면 해당 변수만을 직접 제어해야 했지만, 클래스로 묶은 후에는 해당 변수가 소속되어 있는 오브젝트를 통으로 다루어도 됨. 즉, 세밀하고 섬세한 제어가 아니더라도 뭉텅이로 처리가 가능)
+
+6. C
+
+7. ??? 필드, 오브젝트, 메서드? 정답 : 필드, 생성자, 메서드
+
+8. 필드 : name, price / 생성자 : public Product() / 메서드 : public string getName() (참고, String의 S는 대문자)
+
+9. A,B,C 
+
+10. 3
+
+11. private String (String의 S는 대문자, String은 int, double, boolean 등과는 다르게 클래스로 정의되어 있음) / private int / private boolean
+
+12. 출력은 문제 없이 잘 나올 것 같음. 굳이 문제라면 balance를 public으로 지정했다는 것. private으로 바꾸고 해당 값을 바꿀 함수(Setter)를 정의해 주는 쪽이 더 안전함.
+
+13. B 
+
+14.
+public class Car {
+    private String brand;
+    private String model;
+    private int year;
+    private boolean engineOn;
+
+    public Car(brand, model, year, engineOn) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.engineOn = engineOn;
+    }
+}
+
+엥, 정답에 생성자는 안 써져 있음... 그냥 class 구조만 만들어 보라는 뜻인가.
+
+15. (1) Book (2),(3) this
+
+16. name = name; -> this.name = name; / count = count; -> this.count = count;
+
+17. A 생성자는 초기값이 지정된 값으로만 설정되지만 B 생성자는 초기값을 원하는 값으로 지정하여 설정할 수 있음.
+
+18.
+public Person {
+    this.name = "아무개";
+    this.age = 40;
+}
+
+public Person(String name, int age) {
+    this.name = name;
+    this.age = age;
+}
+
+19. (1) 접근 제어 (전역/로컬) (2) 반환할 값의 타입 (3) 메서드의 이름 (4) 매개 변수 영역 (5) 반환할 값
+
+20. complete() : 수행 여부를 수행했음(true)으로 변경 / canFinishIn() 가용 시간 availableHours를 받아 수행에 필요한 시간 hours와 비교하여 가용 시간이 더 크거나 같은 경우 수행을 할 수 있음/없음을 반환
+
+21. B,D 정답 : A,B,D (A) Instance Method는 오브젝트를 통해 호출한다 = todo.getTitle() 형태로 호출.
+Instance는 개별 상태 / Static은 공통 상태
+class User {
+    String name;        // 인스턴스: 사용자마다 다름
+    static int count;   // static: 전체 사용자 수
+}
+
+22. 8 24 / static은 오브젝트 생성 없이 클래스명으로 바로 호출 가능
+
+23. (1) String (2) name (3) int (4) this 정답 : (3) void
+(참고, static이 적혀 있지 않다면 해당 요소는 instance이다.)
+
+24. 
+public boolean getDone() {
+    return done;
+}
+정답 : getDone() -> isDone() // boolean 타입의 getter는 isXXXX로 표현하는 것이 관례
+
+(참고, getter/setter 사용하는 이유 : getter -> 간단한 연산을 한 값을 반환 가능. setter -> 값에 오류가 있는지 검증 로직 추가 가능.)
+
+25. 
+if (hours > 0 && hours <= 24) {
+    return this.hours = hours;
+}
+정답 : return은 쓰지 않음. setter는 값을 변경해 주는 기능이지 반환해 주는 기능이 아님.
+
+26. false true false 
+
+27. 공부하기 2 false
+
+28.
+Book book1 = ("Java 입문", 25000);
+Book book2 = ("Spring 가이드", 35000);
+
+System.out.println(book1);
+system.out.println(book2);
+
+정답 : 오브젝트를 생성할 때는 Book book1 = new Book("Java 입문", 25000);
+문제에서 요구하는 출력문은 '제목'이었으므로, System.out.println(book1.getTitle());
+
+29. todo1.title = Java 공부, todo2.title = 운동
+
+30.
+public class Student {
+    private String name;
+    private String grade;
+
+    public Student(String name, String grade) {
+        this.name = name;
+        this.grade = grade;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+}
+
+public class Main {
+    public void Main(String[] args) {
+        Student student1 = new Student("김아무개", "A");
+        
+        System.out.println(student1);
+    }
+}
+
+정답 : Main 클래스의 Main 함수 제목 영역에 'static' 빠져 있음.
+출력문에는 객체 전체를 출력하는 방법은 없음. (단, Java 16+ 이상에서 가능)
+System.out.println(student1.getName());
+System.out.println(student1.getGrade());
+처럼 각 데이터를 출력해 주어야 함. (주의, student1.name 아님. getter로 가져와서 보여주는 방식임.)
+이런 불편을 해소하기 위해 toString()을 @override 방식으로 재정의하여 사용한다고 함.
+이래서 @override와 toString() 재정의를 배웠구나...
+
+31. A C D
+
+32. Todo@15xbcp 같은 내용을 출력함.
+(참고, @이후에 오는 값은 hashcode()의 값이라고 함. hashcode()가 뭐냐? 모름. 그런데, 항상 메모리 주소인 것은 아님. 메모리 주소인 경우도 있지만 항상은 아니라는 말.)
+
+33. 동물이 소리를 냅니다. 멍멍!
+
+34. extends : 클래스의 속성(필드/메서드)을 상속함. (1) extends 
+
+35. C 정답 : B C -> super()는 부모의 생성자를 호출함. 단, 사용 위치는 자식 클래스의 첫 줄에서만.
+
+36. B C D 
+
+37. 문제에 답이 적혀 있는데? greet() 함수 이름을 greeet()로 잘못 적음.
+
+38. (1) @override (2) String 정답 : @Override(O 대문자)
+
+39.
+@Override
+public String toString() {
+    return "[" + done + "] " + title + " (" + hours + "시간)";
+}
+
+정답 : 
+@Override
+public String toString() {
+    String status = done ? "[완료]" : "[미완료]"; // 이 부분은 오늘 안 배운 거 같지만... 해설하실 때는 if-else 구문으로 처리하심.
+    return status + " " + title + " (" + hours + "시간)";
+}
+
+40. Java 입문 - 25000원
+구매할 책: Java 입문 - 25000원
