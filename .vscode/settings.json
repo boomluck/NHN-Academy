@@ -1,7 +1,6 @@
 {
     "java.debug.settings.onBuildFailureProceed": true,
     "java.project.sourcePaths": [
-        "Step11",
-        "Step12"
+        "projectmarco/lab-exercise-to-submit"
     ]
 }
